@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NKF Global Careers | Values-Driven Talent Portal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --nkf-red: #d32f2f;
+            --nkf-dark-red: #b71c1c;
+            --nkf-light-red: #ffebee;
+            --light-bg: #f8f9fa;
+            --dark-text: #2c3e50;
+            --gray-text: #6c757d;
+            --border-color: #dee2e6;
+            --success: #28a745;
+            --info: #17a2b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--nkf-red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--nkf-red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: var(--nkf-red);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--nkf-dark-red);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(211, 47, 47, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--nkf-red);
+            border: 2px solid var(--nkf-red);
+            padding: 10px 26px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--nkf-red);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(211,47,47,0.8) 100%), url('https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=2000&q=80') center/cover;
+            color: white;
+            padding: 140px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            animation: slideUp 0.8s ease-out;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            opacity: 0.95;
+            animation: slideUp 1s ease-out;
+            font-weight: 500;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Search Bar */
+        .search-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 1000px;
+            margin: -40px auto 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-container input, .search-container select {
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            flex: 1;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-container input:focus, .search-container select:focus {
+            border-color: var(--nkf-red);
+        }
+
+        /* Governance Matrix */
+        .governance-section {
+            padding: 80px 5%;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            color: var(--nkf-red);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .metric-card {
+            padding: 30px;
+            background: var(--light-bg);
+            border-radius: 12px;
+            border-top: 5px solid var(--nkf-red);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .metric-card i {
+            font-size: 2.5rem;
+            color: var(--nkf-red);
+            margin-bottom: 20px;
+        }
+
+        .metric-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--dark-text);
+            margin-bottom: 10px;
+        }
+
+        /* Job Board */
+        .job-board {
+            padding: 80px 5%;
+            max-width: 1400px;
+            margin: auto;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        .job-card {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--nkf-red);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+            transform-origin: bottom;
+        }
+
+        .job-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .job-title {
+            color: var(--dark-text);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 20px;
+            color: var(--gray-text);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .job-meta i {
+            color: var(--nkf-red);
+            margin-right: 5px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .tag.snb { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .tag.poea { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+        .tag.cq { background: #fff3e0; color: #ef6c00; border: 1px solid #ffe0b2; }
+
+        /* Multi-step ATS & JD Modals */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 12px;
+            padding: 40px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 1.5rem;
+            color: var(--gray-text);
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        /* JD Table Styles */
+        .jd-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .jd-table th, .jd-table td {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .jd-table th {
+            background: var(--light-bg);
+            color: var(--nkf-red);
+            font-weight: 700;
+        }
+
+        .jd-table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .stepper {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .stepper::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--border-color);
+            z-index: 1;
+        }
+
+        .step {
+            position: relative;
+            z-index: 2;
+            background: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--gray-text);
+            transition: all 0.3s;
+        }
+
+        .step.active {
+            border-color: var(--nkf-red);
+            background: var(--nkf-red);
+            color: white;
+        }
+
+        .step.completed {
+            border-color: var(--success);
+            background: var(--success);
+            color: white;
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-text);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .nicer-rubric {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .nicer-rubric h4 {
+            color: var(--nkf-red);
+            margin-bottom: 10px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Surge Staffing Banner */
+        .surge-banner {
+            background: var(--dark-text);
+            color: white;
+            padding: 60px 5%;
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .surge-content h2 {
+            font-size: 2.5rem;
+            color: var(--nkf-light-red);
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">
+            <i class="fa-solid fa-heart-pulse"></i> NKF Careers
+        </a>
+        <ul class="nav-links">
+            <li><a href="#governance">Governance Hub</a></li>
+            <li><a href="#jobs">Global Opportunities</a></li>
+            <li><a href="#surge">Event Surge Response</a></li>
+        </ul>
+        <a href="#jobs" class="btn-primary">Access ATS Portal</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Values-Driven Clinical Careers</h1>
+        <p>Aligning international clinical excellence with strict ethical frameworks. Join a workforce governed by N.I.C.E.R. values, sustaining 41 dialysis centres across Singapore.</p>
+    </section>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by role, keyword, or license type..." onkeyup="filterJobs()">
+        <select id="locationFilter" onchange="filterJobs()">
+            <option value="all">Global & Local Search</option>
+            <option value="sg">Singapore (Local HQ)</option>
+            <option value="ph">Philippines (POEA Direct)</option>
+            <option value="my">Malaysia (Cross-border)</option>
+            <option value="in">India / Myanmar</option>
+        </select>
+        <select id="deptFilter" onchange="filterJobs()">
+            <option value="all">All Departments</option>
+            <option value="clinical">Clinical Care (Engine 1)</option>
+            <option value="corporate">Corporate Governance</option>
+            <option value="events">Event Surge Staffing</option>
+        </select>
+    </div>
+
+    <section id="governance" class="governance-section">
+        <div class="section-header">
+            <h2>Transparency & Ethics Matrix</h2>
+            <p style="color: var(--gray-text); max-width: 600px; margin: auto;">Demonstrating our commitment to Engine 1 sustainability through verifiable organizational metrics.</p>
+        </div>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <i class="fa-solid fa-file-contract"></i>
+                <div class="metric-number counter" data-target="100">0</div>
+                <p><strong>% SNB & POEA Compliance</strong><br>Zero-variance audit record for foreign hires.</p>
+            </div>
+            <div class="metric-card">
+                <i class="fa-solid fa-handshake-angle"></i>
+                <div class="metric-number counter" data-target="41">0</div>
+                <p><strong>Dialysis Centres Maintained</strong><br>Fully staffed by our globally integrated team.</p>
+            </div>
+            <div class="metric-card">
+                <i class="fa-solid fa-bolt"></i>
+                <div class="metric-number counter" data-target="50">0</div>
+                <p><strong>% Reduction in Time-to-Fill</strong><br>Achieved via Automated Surge ATS tracking.</p>
+            </div>
+            <div class="metric-card">
+                <i class="fa-solid fa-globe"></i>
+                <div class="metric-number counter" data-target="5">0</div>
+                <p><strong>Primary International Hubs</strong><br>Diverse CQ integration across Asia.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="jobs" class="job-board">
+        <div class="section-header">
+            <h2>Current Strategic Openings</h2>
+        </div>
+        <div class="job-grid" id="jobGrid">
+            
+            <div class="job-card" data-loc="ph" data-dept="clinical">
+                <div class="job-header">
+                    <h3 class="job-title">Registered Staff Nurse (Dialysis)</h3>
+                    <span style="color: var(--gray-text);">1d ago</span>
+                </div>
+                <div class="job-meta">
+                    <span><i class="fa-solid fa-location-dot"></i> Multiple Centres, SG</span>
+                    <span><i class="fa-solid fa-clock"></i> Full-Time</span>
+                </div>
+                <div class="tags">
+                    <span class="tag snb"><i class="fa-solid fa-check-circle"></i> SNB License Required</span>
+                    <span class="tag poea"><i class="fa-solid fa-plane-departure"></i> POEA Direct-Hire Track</span>
+                    <span class="tag cq"><i class="fa-solid fa-users"></i> High CQ Demanded</span>
+                </div>
+                <p style="color: var(--gray-text); margin-bottom: 25px;">Execute specialized renal care. Candidates from the Philippines will undergo specific cultural intelligence integration for our multi-ethnic patient demographic.</p>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-primary" onclick="openATS('Registered Staff Nurse')">Launch ATS Profile</button>
+                    <button class="btn-outline" onclick="openJD('nurse')">View JD Matrix</button>
+                </div>
+            </div>
+
+            <div class="job-card" data-loc="sg" data-dept="corporate">
+                <div class="job-header">
+                    <h3 class="job-title">HR Business Partner (Talent Attraction)</h3>
+                    <span style="color: var(--gray-text);">3d ago</span>
+                </div>
+                <div class="job-meta">
+                    <span><i class="fa-solid fa-location-dot"></i> Corporate HQ, SG</span>
+                    <span><i class="fa-solid fa-clock"></i> Full-Time</span>
+                </div>
+                <div class="tags">
+                    <span class="tag"><i class="fa-solid fa-scale-balanced"></i> Governance Oversight</span>
+                    <span class="tag"><i class="fa-solid fa-chart-line"></i> Employer Branding</span>
+                </div>
+                <p style="color: var(--gray-text); margin-bottom: 25px;">Lead the N.I.C.E.R. branding overhaul. Manage cross-border recruitment pipelines (Malaysia/India) ensuring strict adherence to international labor laws.</p>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-primary" onclick="openATS('HR Business Partner')">Launch ATS Profile</button>
+                    <button class="btn-outline" onclick="openJD('hrbp')">View JD Matrix</button>
+                </div>
+            </div>
+
+            <div class="job-card" data-loc="sg" data-dept="events">
+                <div class="job-header">
+                    <h3 class="job-title">Event Logistics Coordinator (Surge Pool)</h3>
+                    <span style="color: var(--gray-text);">Just now</span>
+                </div>
+                <div class="job-meta">
+                    <span><i class="fa-solid fa-location-dot"></i> Island-wide Events</span>
+                    <span><i class="fa-solid fa-clock"></i> Ad-Hoc / Contract</span>
+                </div>
+                <div class="tags">
+                    <span class="tag" style="background: #ffebee; color: #c62828;"><i class="fa-solid fa-fire"></i> High-Volume ATS</span>
+                    <span class="tag"><i class="fa-solid fa-golf-ball-tee"></i> Charity Golf 2025</span>
+                </div>
+                <p style="color: var(--gray-text); margin-bottom: 25px;">Join the 'Ready-Reserve' pool to combat volunteer attrition. Activated during peak fundraising campaigns to alleviate operational strain on clinical staff.</p>
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-primary" onclick="openATS('Event Logistics Coordinator')">Enter Surge ATS</button>
+                    <button class="btn-outline" onclick="openJD('events')">View JD Matrix</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="surge" class="surge-banner">
+        <div class="surge-content">
+            <h2>Automated "Ready-Reserve" Protocol</h2>
+            <p style="font-size: 1.1rem; max-width: 600px;">Bypass traditional hiring delays. Register your availability profile once into our centralized database. Be algorithmically matched and deployed for major NKF fundraising events instantly.</p>
+        </div>
+        <div>
+            <button class="btn-primary" style="font-size: 1.2rem; padding: 15px 40px; background: white; color: var(--nkf-dark-red);" onclick="openATS('Surge Reserve Pool')">Activate Reserve Profile <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="atsModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeATS()"><i class="fa-solid fa-times"></i></button>
+            <h2 style="color: var(--nkf-red); margin-bottom: 5px;">N.I.C.E.R. Integration Gateway</h2>
+            <p style="color: var(--gray-text); margin-bottom: 30px;">Applying for: <strong id="modalRoleTitle">Role</strong></p>
+
+            <div class="stepper">
+                <div class="step active" id="step1-ind">1</div>
+                <div class="step" id="step2-ind">2</div>
+                <div class="step" id="step3-ind">3</div>
+            </div>
+
+            <form id="atsForm">
+                <div class="form-step active" id="step1">
+                    <h3>Candidate Governance Baseline</h3>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label>Full Legal Name (as per Passport/NRIC)</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Primary Jurisdiction / Current Location</label>
+                        <select required>
+                            <option value="">Select Country for Legal Processing</option>
+                            <option value="sg">Singapore</option>
+                            <option value="ph">Philippines (Requires POEA exemption)</option>
+                            <option value="my">Malaysia</option>
+                            <option value="in">India / Myanmar / China</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nursing Board Registration Number (If applicable)</label>
+                        <input type="text" placeholder="SNB or Local Board ID">
+                    </div>
+                </div>
+
+                <div class="form-step" id="step2">
+                    <h3>Cultural Intelligence (CQ) Screening</h3>
+                    <p style="color: var(--gray-text); font-size: 0.9rem; margin-bottom: 20px;">NKF serves a highly diverse demographic. Evaluate your alignment.</p>
+                    
+                    <div class="nicer-rubric">
+                        <h4>Integrity & Governance</h4>
+                        <div class="form-group">
+                            <label>How do you handle reporting clinical errors in a high-stakes environment?</label>
+                            <textarea rows="3" required placeholder="Outline your adherence to transparency..."></textarea>
+                        </div>
+                    </div>
+                    <div class="nicer-rubric">
+                        <h4>Respect & Diversity</h4>
+                        <div class="form-group">
+                            <label>Describe your approach to patient care when encountering a language or cultural barrier.</label>
+                            <textarea rows="3" required placeholder="Demonstrate cross-cultural empathy..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" id="step3">
+                    <h3>Primary Source Verification</h3>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <label>Upload Curriculum Vitae (PDF)</label>
+                        <input type="file" accept=".pdf" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload License/Transcripts (For foreign processing)</label>
+                        <input type="file" accept=".pdf" required>
+                    </div>
+                    <div style="background: var(--light-bg); padding: 15px; border-left: 4px solid var(--nkf-red); margin-top: 20px; font-size: 0.9rem;">
+                        <strong>Declaration of Integrity:</strong> I consent to strict background and audit checks in alignment with NKF's governance standards.
+                        <div style="margin-top: 10px;">
+                            <input type="checkbox" id="consent" required> <label for="consent" style="display:inline; font-weight:normal;">I agree</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-outline" id="prevBtn" style="display:none;" onclick="nextPrev(-1)">Previous</button>
+                    <button type="button" class="btn-primary" id="nextBtn" onclick="nextPrev(1)" style="margin-left: auto;">Next: CQ Assessment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="jdModal">
+        <div class="modal-content" style="max-width: 850px;">
+            <button class="close-btn" onclick="closeJD()"><i class="fa-solid fa-times"></i></button>
+            <h2 style="color: var(--nkf-red); margin-bottom: 10px;">Job Description Matrix</h2>
+            <p style="color: var(--gray-text); margin-bottom: 25px;"><strong>Role:</strong> <span id="jdRoleTitle"></span> <br><strong>Framework:</strong> <span id="jdFramework"></span></p>
+
+            <table class="jd-table">
+                <thead>
+                    <tr>
+                        <th>Core Factor</th>
+                        <th>Expectations & Responsibilities</th>
+                        <th>Evaluation / Compliance Standard</th>
+                    </tr>
+                </thead>
+                <tbody id="jdTableBody">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Number Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target + (target === 100 || target === 50 ? '%' : '');
+                }
+            });
+        }
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            if(entries[0].isIntersecting) {
+                animateCounters();
+                observer.disconnect();
+            }
+        });
+        observer.observe(document.querySelector('.metrics-grid'));
+
+        // Advanced Search & Filter
+        function filterJobs() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const loc = document.getElementById('locationFilter').value;
+            const dept = document.getElementById('deptFilter').value;
+            const cards = document.querySelectorAll('.job-card');
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                const cardLoc = card.getAttribute('data-loc');
+                const cardDept = card.getAttribute('data-dept');
+
+                const matchesText = text.includes(input);
+                const matchesLoc = (loc === 'all' || cardLoc === loc || (loc === 'in' && cardLoc === 'in')); 
+                const matchesDept = (dept === 'all' || cardDept === dept);
+
+                if (matchesText && matchesLoc && matchesDept) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Multi-Step Form Logic for ATS
+        let currentTab = 0;
+        
+        function openATS(roleName) {
+            document.getElementById('modalRoleTitle').innerText = roleName;
+            document.getElementById('atsModal').classList.add('active');
+            currentTab = 0;
+            showTab(currentTab);
+        }
+
+        function closeATS() {
+            document.getElementById('atsModal').classList.remove('active');
+            setTimeout(() => { document.getElementById('atsForm').reset(); }, 300);
+        }
+
+        function showTab(n) {
+            const tabs = document.querySelectorAll('.form-step');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            tabs[n].classList.add('active');
+
+            document.getElementById('prevBtn').style.display = n === 0 ? 'none' : 'inline-block';
+            
+            const nextBtn = document.getElementById('nextBtn');
+            if (n === (tabs.length - 1)) {
+                nextBtn.innerHTML = 'Submit to Database <i class="fa-solid fa-check"></i>';
+                nextBtn.classList.add('submit-btn');
+            } else {
+                nextBtn.innerHTML = n === 0 ? 'Next: CQ Assessment <i class="fa-solid fa-arrow-right"></i>' : 'Next: Verification <i class="fa-solid fa-arrow-right"></i>';
+                nextBtn.classList.remove('submit-btn');
+            }
+            updateStepper(n);
+        }
+
+        function nextPrev(n) {
+            const tabs = document.querySelectorAll('.form-step');
+            
+            if (n == 1 && !validateForm()) return false;
+            
+            if (n === 1 && currentTab === tabs.length - 1) {
+                alert("Profile and CQ Assessment successfully logged into the automated ATS pipeline. Metrics updated.");
+                closeATS();
+                return false;
+            }
+            
+            currentTab += n;
+            showTab(currentTab);
+        }
+
+        function validateForm() {
+            const activeTab = document.querySelectorAll('.form-step')[currentTab];
+            const inputs = activeTab.querySelectorAll('input[required], select[required], textarea[required]');
+            let valid = true;
+            inputs.forEach(input => {
+                if (!input.value) {
+                    input.style.borderColor = 'var(--nkf-red)';
+                    valid = false;
+                } else {
+                    input.style.borderColor = 'var(--border-color)';
+                }
+            });
+            return valid;
+        }
+
+        function updateStepper(n) {
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                step.classList.remove('active', 'completed');
+                if (index < n) {
+                    step.classList.add('completed');
+                    step.innerHTML = '<i class="fa-solid fa-check"></i>';
+                } else if (index === n) {
+                    step.classList.add('active');
+                    step.innerHTML = index + 1;
+                } else {
+                    step.innerHTML = index + 1;
+                }
+            });
+        }
+
+        // JD Matrix Modal Logic
+        const jdData = {
+            'nurse': {
+                title: 'Registered Staff Nurse (Dialysis)',
+                framework: 'Governance & Clinical Excellence',
+                rows: [
+                    ['Clinical Competency', 'Perform hemodialysis procedures, monitor patient vitals, and manage dialysis-related complications safely and efficiently.', '100% adherence to clinical protocols; valid SNB practicing certificate.'],
+                    ['Cultural Intelligence (CQ)', 'Communicate effectively and empathetically with a diverse, multi-ethnic patient demographic. Provide customized patient education.', 'Patient feedback scores; assessed during mandatory N.I.C.E.R. integration training.'],
+                    ['Governance & Ethics', 'Maintain strict confidentiality of patient records. Report variances or incidents transparently and immediately.', 'Zero-variance in annual compliance audits; adherence to POEA/MOM regulations.']
+                ]
+            },
+            'hrbp': {
+                title: 'HR Business Partner (Talent Attraction)',
+                framework: 'Corporate Governance & Talent Acquisition',
+                rows: [
+                    ['Pipeline Management', 'Manage cross-border recruitment pipelines (Malaysia/India) efficiently.', 'Time-to-fill metrics, robust talent pool development.'],
+                    ['Employer Branding', 'Lead N.I.C.E.R. branding overhaul to attract governance-aligned candidates.', 'Brand engagement and conversion rates.'],
+                    ['Governance & Compliance', 'Ensure strict adherence to international labor laws and internal ethics.', 'Zero-variance in annual HR audits.']
+                ]
+            },
+            'events': {
+                title: 'Event Logistics Coordinator (Surge Pool)',
+                framework: 'Surge Operations & Logistics',
+                rows: [
+                    ['Event Logistics', 'Coordinate equipment and setup during peak fundraising campaigns.', 'On-time delivery and setup completion.'],
+                    ['Surge Pool Management', 'Manage "Ready-Reserve" volunteer pool and combat attrition.', 'Volunteer retention and mobilization speed.'],
+                    ['Operational Support', 'Alleviate operational strain on clinical staff during events.', 'Feedback scores from clinical and operations teams.']
+                ]
+            }
+        };
+
+        function openJD(roleId) {
+            const data = jdData[roleId];
+            document.getElementById('jdRoleTitle').innerText = data.title;
+            document.getElementById('jdFramework').innerText = data.framework;
+            
+            const tbody = document.getElementById('jdTableBody');
+            tbody.innerHTML = '';
+            data.rows.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td><strong>${row[0]}</strong></td><td>${row[1]}</td><td>${row[2]}</td>`;
+                tbody.appendChild(tr);
+            });
+            
+            document.getElementById('jdModal').classList.add('active');
+        }
+
+        function closeJD() {
+            document.getElementById('jdModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
